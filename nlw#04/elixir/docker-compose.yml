@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  nlw04-db:
+    image: postgres:13-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    restart: unless-stopped
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data

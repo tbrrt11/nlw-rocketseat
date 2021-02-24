@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  elixir-backend:
+    image: elixir:1.11-alpine
+    volumes:
+      - ./rocketpay
+      - ./src:/app
+    depends_on:
+      - db
+  db:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    restart: always
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
